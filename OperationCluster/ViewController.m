@@ -70,8 +70,8 @@
         memcpy(C, D, m * n * sizeof(float));
         start = [NSDate date];
         
-        [eigenGemmWrapper gemmWithTransA:transA == nnpackTrans? gemmTrans : gemmNoTrans
-                                  transB:transB == nnpackTrans? gemmTrans : gemmNoTrans
+        [eigenGemmWrapper gemmWithTransA:transA == nnpackTrans
+                                  transB:transB == nnpackTrans
                                        M:m
                                        N:n
                                        K:k

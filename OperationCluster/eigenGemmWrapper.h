@@ -10,14 +10,10 @@
 
 @interface eigenGemmWrapper : NSObject
 
-enum GEMM_TRANSPOSE {
-    gemmNoTrans = 111,
-    gemmTrans   = 112
-};
-
-+ (void)gemmWithTransA:(const enum GEMM_TRANSPOSE)transA
-                transB:(const enum GEMM_TRANSPOSE)transB
-                     M:(const int)M N:(const int)N
++ (void)gemmWithTransA:(const BOOL)transA
+                transB:(const BOOL)transB
+                     M:(const int)M
+                     N:(const int)N
                      K:(const int)K
                  alpha:(const float)alpha
                      A:(const float *)A

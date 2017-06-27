@@ -11,8 +11,8 @@
 
 @implementation eigenGemmWrapper
 
-+ (void)gemmWithTransA:(const enum GEMM_TRANSPOSE)transA
-                transB:(const enum GEMM_TRANSPOSE)transB
++ (void)gemmWithTransA:(const BOOL)transA
+                transB:(const BOOL)transB
                      M:(const int)M
                      N:(const int)N
                      K:(const int)K
@@ -21,7 +21,7 @@
                      B:(const float *)B
                   beta:(const float)beta
                      C:(float *)C {
-    eigen_gemm(transA == gemmTrans? eigenTrans : eigenNoTrans, transB == gemmTrans? eigenTrans : eigenNoTrans, M, N, K, 1, A, B, 1, C);
+    eigen_gemm(transA? eigenTrans : eigenNoTrans, transB? eigenTrans : eigenNoTrans, M, N, K, 1, A, B, 1, C);
 }
 
 @end

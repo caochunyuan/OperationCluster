@@ -165,6 +165,15 @@ void nnpack_gemm(const enum NNPACK_ALGORITHM algorithm,
     size_t algorithm_height;
     
     switch (algorithm) {
+        case nnpackGemmAuto:
+            if (transA == nnpackNoTrans && transB == nnpackNoTrans) {
+                algorithm_width  =  4;
+                algorithm_height = 12;
+            } else {
+                algorithm_width  =  8;
+                algorithm_height =  8;
+            }
+            break;
         case nnpackGemm4x12:
             algorithm_width  =  4;
             algorithm_height = 12;
