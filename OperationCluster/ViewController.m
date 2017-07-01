@@ -96,6 +96,7 @@
         
         if (verify) {
             if (fabsf(sum1 - sum2) > 0.1) {
+                printf("diff: %f", sum1 - sum2);
                 assert(0);
             }
         }
@@ -108,17 +109,17 @@
         free(D);
     }
     
-//    for (int i = 0; i < time1Arr.count; i++) {
-//        printf("%.2f ", ((NSNumber *)time1Arr[i]).floatValue);
-//    }
-//    
-//    printf("\n\n");
-//    
-//    for (int i = 0; i < time2Arr.count; i++) {
-//        printf("%.2f ", ((NSNumber *)time2Arr[i]).floatValue);
-//    }
-//    
-//    printf("\n\n");
+    for (int i = 0; i < time1Arr.count; i++) {
+        printf("%.2f ", ((NSNumber *)time1Arr[i]).floatValue);
+    }
+    
+    printf("\n\n");
+    
+    for (int i = 0; i < time2Arr.count; i++) {
+        printf("%.2f ", ((NSNumber *)time2Arr[i]).floatValue);
+    }
+    
+    printf("\n\n");
 }
 
 
