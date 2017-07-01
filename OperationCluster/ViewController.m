@@ -27,17 +27,18 @@
     time1Arr = [NSMutableArray new];
     time2Arr = [NSMutableArray new];
     
-    for (int iter = 1; iter < 100; iter++) {
+    for (int iter = 1; iter < 501; iter++) {
         
-        int m = (int)((float)arc4random() / UINT32_MAX * 500 + 1);
-        int n = (int)((float)arc4random() / UINT32_MAX * 500 + 1);
-        int k = (int)((float)arc4random() / UINT32_MAX * 500 + 1);
-        float alpha = 1.0;
-        float beta = 1.0;
-        enum NNPACK_TRANSPOSE transA = nnpackTrans;
-        enum NNPACK_TRANSPOSE transB = nnpackTrans;
+        int m = iter;   //(int)((float)arc4random() / UINT32_MAX * 500 + 1);
+        int n = m;      //(int)((float)arc4random() / UINT32_MAX * 500 + 1);
+        int k = m;      //(int)((float)arc4random() / UINT32_MAX * 500 + 1);
+        float alpha = 1;//(float)arc4random() / UINT32_MAX;
+        float beta = 1; //(float)arc4random() / UINT32_MAX;
+        BOOL transA = NO;
+        BOOL transB = NO;
+        BOOL verify = NO;
         
-//        printf("m, n, k, alpha, beta are %d %d %d %f %f\n",m,n,k,alpha,beta);
+        printf("m, n, k, alpha, beta are %d %d %d %f %f\n",m,n,k,alpha,beta);
         
         float *A = malloc(m * k * sizeof(float));
         float *B = malloc(k * n * sizeof(float));
@@ -56,22 +57,26 @@
             D[i] = (float)arc4random() / UINT32_MAX - 0.5;
         }
         
-        memcpy(C, D, m * n * sizeof(float));
         NSDate *start = [NSDate date];
-        
-        nnpack_gemm(nnpackGemmAuto, transA, transB, m, n, k, alpha, A, B, beta, C);
-        
-        float time1 = -[start timeIntervalSinceNow]*1000;
-        [time1Arr addObject:@(time1)];
-        
-        float sum1;
-        vDSP_sve(C, 1, &sum1, m*n);
         
         memcpy(C, D, m * n * sizeof(float));
         start = [NSDate date];
         
-        [eigenGemmWrapper gemmWithTransA:transA == nnpackTrans
-                                  transB:transB == nnpackTrans
+        nnpack_gemm(nnpackGemmAuto, transA? nnpackTrans : nnpackNoTrans, transB? nnpackTrans : nnpackNoTrans, m, n, k, alpha, A, B, beta, C);
+        
+        float time1 = -[start timeIntervalSinceNow]*1000;
+        [time1Arr addObject:@(time1)];
+        
+        float sum1 = 0.0;
+        if (verify) {
+            vDSP_sve(C, 1, &sum1, m*n);
+        }
+        
+        memcpy(C, D, m * n * sizeof(float));
+        start = [NSDate date];
+        
+        [eigenGemmWrapper gemmWithTransA:transA
+                                  transB:transB
                                        M:m
                                        N:n
                                        K:k
@@ -84,14 +89,18 @@
         float time2 = -[start timeIntervalSinceNow]*1000;
         [time2Arr addObject:@(time2)];
 
-        float sum2;
-        vDSP_sve(C, 1, &sum2, m*n);
-        
-        if (fabsf(sum1 - sum2) > 0.1) {
-            assert(0);
+        float sum2 = 0.0;
+        if (verify) {
+            vDSP_sve(C, 1, &sum2, m*n);
         }
         
-        printf("nnpack: %f   eigen: %f\n", time1, time2);
+        if (verify) {
+            if (fabsf(sum1 - sum2) > 0.1) {
+                assert(0);
+            }
+        }
+        
+//        printf("nnpack: %f   eigen: %f\n", time1, time2);
         
         free(A);
         free(B);
