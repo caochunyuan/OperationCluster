@@ -1,6 +1,6 @@
 //
 //  nnpackAlgorithm.h
-//  OperationCluster
+//  GeneralNet
 //
 //  Created by Lun on 2017/6/26.
 //  Copyright © 2017年 Lun. All rights reserved.
@@ -9,7 +9,6 @@
 #ifndef nnpackAlgorithm_h
 #define nnpackAlgorithm_h
 
-#include <stdio.h>
 #include <stdbool.h>
 
 void nnp_sgemm_only_4x12(size_t k,
