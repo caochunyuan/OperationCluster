@@ -96,7 +96,7 @@
         
         if (verify) {
             if (fabsf(sum1 - sum2) > 0.1) {
-                printf("diff: %f", sum1 - sum2);
+                printf("diff: %f\n", sum1 - sum2);
                 assert(0);
             }
         }
@@ -122,11 +122,9 @@
     printf("\n\n");
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 @end
