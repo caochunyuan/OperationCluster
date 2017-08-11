@@ -9,11 +9,13 @@
 #import "ViewController.h"
 #import <Accelerate/Accelerate.h>
 #import "nnpackGemm.h"
+#import "nnpackNoTransGemm.h"
 #import "eigenGemmWrapper.h"
 
 @interface ViewController () {
     NSMutableArray *time1Arr;
     NSMutableArray *time2Arr;
+    NSMutableArray *time3Arr;
 }
 
 @end
@@ -26,14 +28,15 @@
     
     time1Arr = [NSMutableArray new];
     time2Arr = [NSMutableArray new];
+    time3Arr = [NSMutableArray new];
     
     for (int iter = 1; iter < 501; iter++) {
         
         int m = iter;   //(int)((float)arc4random() / UINT32_MAX * 500 + 1);
         int n = m;      //(int)((float)arc4random() / UINT32_MAX * 500 + 1);
         int k = m;      //(int)((float)arc4random() / UINT32_MAX * 500 + 1);
-        float alpha = 1;//(float)arc4random() / UINT32_MAX;
-        float beta = 1; //(float)arc4random() / UINT32_MAX;
+        float alpha = (float)arc4random() / UINT32_MAX;
+        float beta = (float)arc4random() / UINT32_MAX;
         BOOL transA = NO;
         BOOL transB = NO;
         BOOL verify = NO;
@@ -62,7 +65,8 @@
         memcpy(C, D, m * n * sizeof(float));
         start = [NSDate date];
         
-        nnpack_gemm(nnpackGemmAuto, transA? nnpackTrans : nnpackNoTrans, transB? nnpackTrans : nnpackNoTrans, m, n, k, alpha, A, B, beta, C);
+//        nnpack_gemm(nnpackGemmAuto, transA? nnpackTrans : nnpackNoTrans, transB? nnpackTrans : nnpackNoTrans, m, n, k, alpha, A, B, beta, C);
+        nnpack_no_trans_gemm(m, n, k, alpha, A, B, beta, C);
         
         float time1 = -[start timeIntervalSinceNow]*1000;
         [time1Arr addObject:@(time1)];

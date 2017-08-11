@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BD5849BF1F0147F40065FA74 /* nnpackAlgorithm.c in Sources */ = {isa = PBXBuildFile; fileRef = BD5849BD1F0147F40065FA74 /* nnpackAlgorithm.c */; };
+		BD8FD9D91F3D8AAE0012F1D5 /* nnpackNoTransGemm.c in Sources */ = {isa = PBXBuildFile; fileRef = BD8FD9D71F3D8AAE0012F1D5 /* nnpackNoTransGemm.c */; };
 		BD9E26361EF2849500953DE6 /* ConvolutionExample.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9E26351EF2849500953DE6 /* ConvolutionExample.m */; };
 		BD9E263C1EF28B8F00953DE6 /* MetalMatrixMult.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9E26381EF28B8F00953DE6 /* MetalMatrixMult.m */; };
 		BD9E263D1EF28B8F00953DE6 /* MetalMatrixMult.metal in Sources */ = {isa = PBXBuildFile; fileRef = BD9E26391EF28B8F00953DE6 /* MetalMatrixMult.metal */; };
@@ -80,6 +81,8 @@
 /* Begin PBXFileReference section */
 		BD5849BD1F0147F40065FA74 /* nnpackAlgorithm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nnpackAlgorithm.c; sourceTree = "<group>"; };
 		BD5849BE1F0147F40065FA74 /* nnpackAlgorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nnpackAlgorithm.h; sourceTree = "<group>"; };
+		BD8FD9D71F3D8AAE0012F1D5 /* nnpackNoTransGemm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nnpackNoTransGemm.c; sourceTree = "<group>"; };
+		BD8FD9D81F3D8AAE0012F1D5 /* nnpackNoTransGemm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nnpackNoTransGemm.h; sourceTree = "<group>"; };
 		BD9E26341EF2849500953DE6 /* ConvolutionExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvolutionExample.h; sourceTree = "<group>"; };
 		BD9E26351EF2849500953DE6 /* ConvolutionExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvolutionExample.m; sourceTree = "<group>"; };
 		BD9E26371EF28B8F00953DE6 /* MetalMatrixMult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetalMatrixMult.h; sourceTree = "<group>"; };
@@ -1164,6 +1167,8 @@
 				BDA3C0B51EEFEAEA00688871 /* nnpackGemm.c */,
 				BD5849BE1F0147F40065FA74 /* nnpackAlgorithm.h */,
 				BD5849BD1F0147F40065FA74 /* nnpackAlgorithm.c */,
+				BD8FD9D81F3D8AAE0012F1D5 /* nnpackNoTransGemm.h */,
+				BD8FD9D71F3D8AAE0012F1D5 /* nnpackNoTransGemm.c */,
 				BDA3C0B61EEFEAEA00688871 /* eigenGemm.hpp */,
 				BDA3C0B71EEFEAEA00688871 /* eigenGemm.cpp */,
 				BDA3C5CE1EEFF12800688871 /* eigenGemmWrapper.h */,
@@ -1365,6 +1370,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD8FD9D91F3D8AAE0012F1D5 /* nnpackNoTransGemm.c in Sources */,
 				BD9E263C1EF28B8F00953DE6 /* MetalMatrixMult.m in Sources */,
 				BD9E263E1EF28B8F00953DE6 /* MetalMatrixBuffer.m in Sources */,
 				BD5849BF1F0147F40065FA74 /* nnpackAlgorithm.c in Sources */,
